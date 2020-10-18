@@ -1,5 +1,3 @@
-//what 
-  //      the heck 
 package MedicalSystem;
 
 /**
