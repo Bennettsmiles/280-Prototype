@@ -75,7 +75,16 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         MedicalInformationDatecbo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         MedicalInformationout = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
+        financialHistory = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        patientFinancialHistoryDatescbo = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
+        patientbankaccnttxt = new javax.swing.JTextField();
+        patientFinancialHistoryCosttxt = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        patientFinancialStatement = new javax.swing.JTextArea();
+        jLabel35 = new javax.swing.JLabel();
         patientSignIn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -307,18 +316,45 @@ public class MedicalSystemUI extends javax.swing.JFrame {
 
         patientTabs.addTab("Medical Information", MedicalInformation);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
-        );
+        financialHistory.setPreferredSize(new java.awt.Dimension(536, 350));
+        financialHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        patientTabs.addTab("Financial History", jPanel1);
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("Financial Information");
+        financialHistory.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 540, -1));
+
+        patientFinancialHistoryDatescbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        patientFinancialHistoryDatescbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientFinancialHistoryDatescboActionPerformed(evt);
+            }
+        });
+        financialHistory.add(patientFinancialHistoryDatescbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 60, 127, -1));
+
+        jLabel33.setText("Bank Account Number:");
+        financialHistory.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 124, -1, -1));
+
+        patientbankaccnttxt.setEditable(false);
+        financialHistory.add(patientbankaccnttxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 81, -1));
+
+        patientFinancialHistoryCosttxt.setEditable(false);
+        financialHistory.add(patientFinancialHistoryCosttxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 81, -1));
+
+        jLabel34.setText("Total Cost:");
+        financialHistory.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 124, -1, -1));
+
+        patientFinancialStatement.setEditable(false);
+        patientFinancialStatement.setColumns(20);
+        patientFinancialStatement.setRows(5);
+        jScrollPane4.setViewportView(patientFinancialStatement);
+
+        financialHistory.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 173, 380, -1));
+
+        jLabel35.setText("Statement:");
+        financialHistory.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+
+        patientTabs.addTab("Financial History", financialHistory);
 
         javax.swing.GroupLayout individualPatientPageLayout = new javax.swing.GroupLayout(individualPatientPage);
         individualPatientPage.setLayout(individualPatientPageLayout);
@@ -328,7 +364,7 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         );
         individualPatientPageLayout.setVerticalGroup(
             individualPatientPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(patientTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(patientTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
 
         patientPortalFrame.add(individualPatientPage, "individualPatientPage");
@@ -894,6 +930,15 @@ public class MedicalSystemUI extends javax.swing.JFrame {
                 MedicalInformationDatecbo.addItem(medDates.get(i));   
             }
         }
+        else if (tabIndex ==2){
+            patientFinancialHistoryDatescbo.removeAllItems();
+            patientPortal.setSize(financialHistory.getPreferredSize());
+            ArrayList<String> billDates = PatientBillingStatementDatabase.getBillingHistoryDates(currentUser);
+            for(int i = 0; i < billDates.size(); i++){
+                patientFinancialHistoryDatescbo.addItem(billDates.get(i));   
+            }
+            patientFinancialHistoryDatescbo.setSelectedIndex(-1);
+        }
     }//GEN-LAST:event_patientTabsStateChanged
 
     private void MedicalInformationDatecboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicalInformationDatecboActionPerformed
@@ -1109,6 +1154,25 @@ public class MedicalSystemUI extends javax.swing.JFrame {
        showMessageDialog(null, "Patient Appointment Updated");
     }//GEN-LAST:event_patientSubmitUpdatebtnActionPerformed
 
+    private void patientFinancialHistoryDatescboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientFinancialHistoryDatescboActionPerformed
+        if (patientFinancialHistoryDatescbo.getSelectedIndex() == -1){
+            //doctorPortal.setSize(updatePatientMedicalInformation.getPreferredSize());
+            //jLabel22.setVisible(false);
+            //Label27.setVisible(false);
+            //jLabel28.setVisible(false);
+            patientbankaccnttxt.setText("");
+            patientFinancialHistoryCosttxt.setText("");
+            //jScrollPane3.setVisible(false);
+            patientFinancialStatement.setText("");
+        }
+        else if (patientFinancialHistoryDatescbo.getSelectedIndex() != -1 && patientFinancialHistoryDatescbo.getItemCount() != 0) {
+            String[] content = PatientBillingStatementDatabase.getBillingHistoryContent(currentUser, patientFinancialHistoryDatescbo.getSelectedItem().toString());
+            patientbankaccnttxt.setText(content[0]);
+            patientFinancialHistoryCosttxt.setText(content[1]);
+            patientFinancialStatement.setText(content[2]);
+        }
+    }//GEN-LAST:event_patientFinancialHistoryDatescboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1158,6 +1222,8 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         MedicalHistoryDatabase.addMedicalHistory("gallen", "09-30-2019", "Annual Check-up\n--Dr. Stevenson", "St. Francis");
         MedicalHistoryDatabase.addMedicalHistory("gallen", "11-01-2019", "Recieved Flu Shot\n--Dr. Choi", "St. Nicholas");
         
+        PatientBillingStatementDatabase.addBillingHistory("jsmith", "08-14-2018", 1000, "Total amount due for Right Knee Surgery");
+        
         DoctorDatabase.addDoctor(new Doctor("George", "Wang", 40, "Male", "Harvard", "St. Nicholas", "Password!"));
         DoctorDatabase.addDoctor(new Doctor("Brianna", "Harrison", 36, "Female", "Stanford", "St. Matthew", "Password!"));
         
@@ -1191,6 +1257,7 @@ public class MedicalSystemUI extends javax.swing.JFrame {
     private javax.swing.JTextField doctorSignInUserNametxt;
     private javax.swing.JButton doctorSignInbtn;
     private javax.swing.JTabbedPane doctorTabs;
+    private javax.swing.JPanel financialHistory;
     private javax.swing.JPanel individualDoctorPage;
     private javax.swing.JPanel individualPatientPage;
     private javax.swing.JLabel jLabel1;
@@ -1218,21 +1285,28 @@ public class MedicalSystemUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton medicalHistoryClosebtn;
     private javax.swing.JFrame optionsFrame;
     private javax.swing.JTextField patientAppointmentDatetxt;
     private javax.swing.JTextField patientAppointmentLocationtxt;
     private javax.swing.JComboBox<String> patientAppointmentSelectorcbo;
+    private javax.swing.JTextField patientFinancialHistoryCosttxt;
+    private javax.swing.JComboBox<String> patientFinancialHistoryDatescbo;
+    private javax.swing.JTextArea patientFinancialStatement;
     private javax.swing.JTextField patientInformationAgetxt;
     private javax.swing.JTextField patientInformationBanktxt;
     private javax.swing.JButton patientInformationCancelbtn;
@@ -1261,6 +1335,7 @@ public class MedicalSystemUI extends javax.swing.JFrame {
     private javax.swing.JButton patientSubmitUpdatebtn;
     private javax.swing.JTabbedPane patientTabs;
     private javax.swing.JTextArea patientUpdateDetailsout;
+    private javax.swing.JTextField patientbankaccnttxt;
     private javax.swing.JPanel personalDoctorInformation;
     private javax.swing.JPanel personalPatientInformation;
     private javax.swing.JPanel updatePatientMedicalInformation;
