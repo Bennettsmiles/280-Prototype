@@ -8,6 +8,8 @@ package MedicalSystem;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -73,6 +75,7 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         MedicalInformationDatecbo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         MedicalInformationout = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
         patientSignIn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -121,6 +124,18 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         doctorMedicalOutput = new javax.swing.JTextArea();
         medicalHistoryClosebtn = new javax.swing.JButton();
         medicalHistoryClosebtn.setVisible(false);
+        updatePatientMedicalInformation = new javax.swing.JPanel();
+        patientSelectorcbo = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
+        patientAppointmentSelectorcbo = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        patientAppointmentDatetxt = new javax.swing.JTextField();
+        patientAppointmentLocationtxt = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        patientUpdateDetailsout = new javax.swing.JTextArea();
+        jLabel28 = new javax.swing.JLabel();
+        patientSubmitUpdatebtn = new javax.swing.JButton();
         optionsFrame = new javax.swing.JFrame();
         PatientPortalbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -128,7 +143,6 @@ public class MedicalSystemUI extends javax.swing.JFrame {
 
         patientPortal.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         patientPortal.setTitle("Patient Portal");
-        patientPortal.setAlwaysOnTop(true);
         patientPortal.setIconImages(null);
         patientPortal.setResizable(false);
         patientPortal.setSize(new java.awt.Dimension(550, 550));
@@ -293,6 +307,19 @@ public class MedicalSystemUI extends javax.swing.JFrame {
 
         patientTabs.addTab("Medical Information", MedicalInformation);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 362, Short.MAX_VALUE)
+        );
+
+        patientTabs.addTab("Financial History", jPanel1);
+
         javax.swing.GroupLayout individualPatientPageLayout = new javax.swing.GroupLayout(individualPatientPage);
         individualPatientPage.setLayout(individualPatientPageLayout);
         individualPatientPageLayout.setHorizontalGroup(
@@ -364,7 +391,6 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         );
 
         doctorPortal.setTitle("Doctor Portal");
-        doctorPortal.setAlwaysOnTop(true);
 
         doctorPortalFrame.setLayout(new java.awt.CardLayout());
 
@@ -547,6 +573,69 @@ public class MedicalSystemUI extends javax.swing.JFrame {
 
         doctorTabs.addTab("View Patient History", patientMedicalInformation);
 
+        updatePatientMedicalInformation.setPreferredSize(new java.awt.Dimension(536, 215));
+        updatePatientMedicalInformation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        patientSelectorcbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        patientSelectorcbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientSelectorcboActionPerformed(evt);
+            }
+        });
+        updatePatientMedicalInformation.add(patientSelectorcbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 67, 165, -1));
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Update Patient Medical History");
+        updatePatientMedicalInformation.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 27, 536, -1));
+
+        patientAppointmentSelectorcbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        patientAppointmentSelectorcbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientAppointmentSelectorcboActionPerformed(evt);
+            }
+        });
+        updatePatientMedicalInformation.add(patientAppointmentSelectorcbo, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 105, 165, -1));
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel22.setText("Date:");
+        updatePatientMedicalInformation.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 162, 80, -1));
+
+        patientAppointmentDatetxt.setEditable(false);
+        updatePatientMedicalInformation.add(patientAppointmentDatetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 159, 85, -1));
+
+        patientAppointmentLocationtxt.setEditable(false);
+        updatePatientMedicalInformation.add(patientAppointmentLocationtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 159, 85, -1));
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel27.setText("Location:");
+        updatePatientMedicalInformation.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 162, 80, -1));
+
+        patientUpdateDetailsout.setColumns(20);
+        patientUpdateDetailsout.setRows(5);
+        patientUpdateDetailsout.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientUpdateDetailsoutKeyTyped(evt);
+            }
+        });
+        jScrollPane3.setViewportView(patientUpdateDetailsout);
+
+        updatePatientMedicalInformation.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 197, 337, 154));
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel28.setText("Notes:");
+        updatePatientMedicalInformation.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 197, 80, -1));
+
+        patientSubmitUpdatebtn.setText("Submit");
+        patientSubmitUpdatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientSubmitUpdatebtnActionPerformed(evt);
+            }
+        });
+        updatePatientMedicalInformation.add(patientSubmitUpdatebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 328, -1, -1));
+
+        doctorTabs.addTab("Update Patient History", updatePatientMedicalInformation);
+
         javax.swing.GroupLayout individualDoctorPageLayout = new javax.swing.GroupLayout(individualDoctorPage);
         individualDoctorPage.setLayout(individualDoctorPageLayout);
         individualDoctorPageLayout.setHorizontalGroup(
@@ -555,7 +644,7 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         );
         individualDoctorPageLayout.setVerticalGroup(
             individualDoctorPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(doctorTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(doctorTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
         );
 
         doctorPortalFrame.add(individualDoctorPage, "individualDoctorPage");
@@ -890,6 +979,19 @@ public class MedicalSystemUI extends javax.swing.JFrame {
             }
             doctorCbo.setSelectedIndex(-1);
         }
+        else if(tabIndex == 2){
+            doctorPortal.setSize(updatePatientMedicalInformation.getPreferredSize());
+            patientAppointmentSelectorcbo.setVisible(false);
+            
+            patientSelectorcbo.removeAllItems();
+            ArrayList<String> patients = PatientDatabase.getPatientList();
+            
+            for(int i = 0; i < patients.size(); i++){
+                patientSelectorcbo.addItem(patients.get(i));
+            }
+            patientSelectorcbo.setSelectedIndex(-1);
+            patientSubmitUpdatebtn.setEnabled(false);
+        }
     }//GEN-LAST:event_doctorTabsStateChanged
 
     private void doctorCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorCboActionPerformed
@@ -934,6 +1036,78 @@ public class MedicalSystemUI extends javax.swing.JFrame {
         MedicalInformationout.setText("");
         MedicalInformationDatecbo.removeAllItems();
     }//GEN-LAST:event_patientPortalWindowClosing
+
+    private void patientSelectorcboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSelectorcboActionPerformed
+        if(patientSelectorcbo.getSelectedIndex() == -1){
+         doctorPortal.setSize(updatePatientMedicalInformation.getPreferredSize());
+         patientAppointmentSelectorcbo.setVisible(false);
+        }
+        if(patientSelectorcbo.getSelectedIndex() != -1 && patientSelectorcbo.getItemCount() != 0 && patientSelectorcbo.getItemCount() != 1){
+            patientAppointmentSelectorcbo.setVisible(true);
+            patientAppointmentSelectorcbo.removeAllItems();
+            patientAppointmentSelectorcbo.setSelectedIndex(-1);
+            ArrayList<String> appointments = MedicalHistoryDatabase.getMedicalHistoryDates(patientSelectorcbo.getSelectedItem().toString());
+            
+            if (appointments.isEmpty()){
+                showMessageDialog(null, "This person has not had an appointment yet");
+                patientSelectorcbo.setSelectedIndex(-1); 
+            }
+            else{
+                for(int i = 0; i < appointments.size(); i++){
+                    patientAppointmentSelectorcbo.addItem(appointments.get(i));   
+                }
+            
+                patientAppointmentSelectorcbo.setSelectedIndex(-1);
+            }
+        }
+    }//GEN-LAST:event_patientSelectorcboActionPerformed
+
+    private void patientAppointmentSelectorcboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientAppointmentSelectorcboActionPerformed
+        if (patientAppointmentSelectorcbo.getSelectedIndex() == -1){
+            doctorPortal.setSize(updatePatientMedicalInformation.getPreferredSize());
+            jLabel22.setVisible(false);
+            jLabel27.setVisible(false);
+            jLabel28.setVisible(false);
+            patientAppointmentDatetxt.setVisible(false);
+            patientAppointmentLocationtxt.setVisible(false);
+            jScrollPane3.setVisible(false);
+            patientUpdateDetailsout.setVisible(false);
+            patientSubmitUpdatebtn.setVisible(false);
+        }
+        else if (/*patientAppointmentSelectorcbo.getItemCount() != 1 &&*/ patientAppointmentSelectorcbo.getSelectedIndex() != -1 && patientAppointmentSelectorcbo.getItemCount() != 0) {
+            //System.out.print("helloe there");
+            String[] content = MedicalHistoryDatabase.getMedicalHistoryContent(patientSelectorcbo.getSelectedItem().toString(), patientAppointmentSelectorcbo.getSelectedItem().toString());
+            doctorPortal.setSize(540, 440);
+            patientAppointmentDatetxt.setText(content[0]);
+            patientAppointmentLocationtxt.setText(content[2]);
+            patientUpdateDetailsout.setText(content[1]);
+            jLabel22.setVisible(true);
+            jLabel27.setVisible(true);
+            jLabel28.setVisible(true);
+            patientAppointmentDatetxt.setVisible(true);
+            patientAppointmentLocationtxt.setVisible(true);
+            jScrollPane3.setVisible(true);
+            patientUpdateDetailsout.setVisible(true);
+            patientSubmitUpdatebtn.setVisible(true);
+        }
+    }//GEN-LAST:event_patientAppointmentSelectorcboActionPerformed
+
+    private void patientUpdateDetailsoutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientUpdateDetailsoutKeyTyped
+        String[] content = MedicalHistoryDatabase.getMedicalHistoryContent(patientSelectorcbo.getSelectedItem().toString(), patientAppointmentSelectorcbo.getSelectedItem().toString());
+        if (patientUpdateDetailsout.getText().equals(content[1]) && patientSubmitUpdatebtn.isEnabled()){
+            patientSubmitUpdatebtn.setEnabled(false);
+        }
+        else if(!(patientSubmitUpdatebtn.isEnabled()))
+        {
+            patientSubmitUpdatebtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_patientUpdateDetailsoutKeyTyped
+
+    private void patientSubmitUpdatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientSubmitUpdatebtnActionPerformed
+       MedicalHistoryDatabase.updateAppointmentDetails(patientUpdateDetailsout.getText(), patientSelectorcbo.getSelectedItem().toString());
+       patientSubmitUpdatebtn.setEnabled(false);
+       showMessageDialog(null, "Patient Appointment Updated");
+    }//GEN-LAST:event_patientSubmitUpdatebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1033,23 +1207,32 @@ public class MedicalSystemUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton medicalHistoryClosebtn;
     private javax.swing.JFrame optionsFrame;
+    private javax.swing.JTextField patientAppointmentDatetxt;
+    private javax.swing.JTextField patientAppointmentLocationtxt;
+    private javax.swing.JComboBox<String> patientAppointmentSelectorcbo;
     private javax.swing.JTextField patientInformationAgetxt;
     private javax.swing.JTextField patientInformationBanktxt;
     private javax.swing.JButton patientInformationCancelbtn;
@@ -1068,14 +1251,18 @@ public class MedicalSystemUI extends javax.swing.JFrame {
     private javax.swing.JButton patientPortalMenuBack;
     private javax.swing.JButton patientPortalMenuSignIn;
     private javax.swing.JLabel patientPortalMenuTitlelbl;
+    private javax.swing.JComboBox<String> patientSelectorcbo;
     private javax.swing.JPanel patientSignIn;
     private javax.swing.JButton patientSignInCancelbtn;
     private javax.swing.JPasswordField patientSignInPasswordpwd;
     private javax.swing.JTextField patientSignInUserNametxt;
     private javax.swing.JButton patientSignInbtn;
     private javax.swing.ButtonGroup patientSignUpGendergrp;
+    private javax.swing.JButton patientSubmitUpdatebtn;
     private javax.swing.JTabbedPane patientTabs;
+    private javax.swing.JTextArea patientUpdateDetailsout;
     private javax.swing.JPanel personalDoctorInformation;
     private javax.swing.JPanel personalPatientInformation;
+    private javax.swing.JPanel updatePatientMedicalInformation;
     // End of variables declaration//GEN-END:variables
 }
