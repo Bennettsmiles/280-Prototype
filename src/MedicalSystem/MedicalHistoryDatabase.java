@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Smiles
+ * @author Jacob Kwan Luke Ryan
  */
 public class MedicalHistoryDatabase {
     
@@ -67,5 +67,14 @@ public class MedicalHistoryDatabase {
             }
         }
         return patientMedHistory;
+    }
+    public static void updateAppointmentDetails(String details, String userName)
+    {
+        for(int i =0; i < MEDICALHISTORY.size(); i++)
+        {
+            if(MEDICALHISTORY.get(i)[0].equals(userName.toUpperCase())){
+                MEDICALHISTORY.get(i)[2] = details;
+            }
+        }
     }
 }
