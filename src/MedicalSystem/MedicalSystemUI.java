@@ -934,10 +934,16 @@ public class MedicalSystemUI extends javax.swing.JFrame {
             patientFinancialHistoryDatescbo.removeAllItems();
             patientPortal.setSize(financialHistory.getPreferredSize());
             ArrayList<String> billDates = PatientBillingStatementDatabase.getBillingHistoryDates(currentUser);
-            for(int i = 0; i < billDates.size(); i++){
-                patientFinancialHistoryDatescbo.addItem(billDates.get(i));   
+            if (billDates.isEmpty()){
+                showMessageDialog(null, "This person has not had a billing statement yet");
             }
-            patientFinancialHistoryDatescbo.setSelectedIndex(-1);
+            else
+            {
+                for(int i = 0; i < billDates.size(); i++){
+                    patientFinancialHistoryDatescbo.addItem(billDates.get(i));   
+                }
+                patientFinancialHistoryDatescbo.setSelectedIndex(-1);
+            }
         }
     }//GEN-LAST:event_patientTabsStateChanged
 
